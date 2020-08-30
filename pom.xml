@@ -68,12 +68,28 @@
 	<build>
 		<plugins>
 		<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>		
+				<executions>
+					<execution>					        	
+						<phase>generate-sources</phase>
+						<goals><goal>add-source</goal></goals>
+						<configuration>
+							<sources>
+								<!-- where to find the generated sources --> 
+								<source>target/raml-generated</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>									
+			</plugin>
+		<plugin>
   <groupId>com.phoenixnap.oss</groupId>
   <artifactId>springmvc-raml-plugin</artifactId>
   <version>2.0.5</version>
   <configuration>
     <ramlPath>src/main/resources/api.raml</ramlPath>
-    <outputRelativePath>/src/main/java</outputRelativePath>
+    <outputRelativePath>target/raml-generated</outputRelativePath>
     <addTimestampFolder>false</addTimestampFolder>
     <basePackage>com.example.demo</basePackage>
     <baseUri>/api</baseUri>
