@@ -96,21 +96,23 @@
     <generateUnreferencedObjects>true</generateUnreferencedObjects>
     <generationConfig>
         <includeAdditionalProperties>false</includeAdditionalProperties>
+		<generateBuilders>true</generateBuilders>
+		<includeConstructors>true</includeConstructors>
     </generationConfig>
     <seperateMethodsByContentType>false</seperateMethodsByContentType>
     <rule>com.phoenixnap.oss.ramlplugin.raml2code.rules.Spring4ControllerInterfaceRule</rule>
     <ruleConfiguration>			
     </ruleConfiguration>
   </configuration>
-  <executions>
-    <execution>
-      <id>generate-springmvc-endpoints</id>
-      <phase>compile</phase>
-      <goals>
-        <goal>generate-springmvc-endpoints</goal>
-      </goals>
-    </execution>
-  </executions>
+				<executions>
+					<execution>
+						<id>generate-springmvc-controllers</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate-springmvc-endpoints</goal>
+						</goals>
+					</execution>
+				</executions>
 </plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

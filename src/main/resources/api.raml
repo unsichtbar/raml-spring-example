@@ -1,36 +1,50 @@
 
 #%RAML 1.0
-  title: Drinks Services
-  version: ${project.version}
-  mediaType: application/json
-  baseUri: /
-  /drinks:
-    description: Provides interaction with 'Drink' resource  
-    get:
-      description: Retrieves a list of available drinks.      
-      responses:
-        200:        
-          body:
-            application/json:
-              schema: |
-                {
-                  "$schema": "http://json-schema.org/draft-04/schema#",
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "type": {
-                        "type": "string"
-                      },
-                      "name": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "type",
-                      "name"
-                    ]
-                  }
-                }
-  
+title: Drinks Services
+version: ${project.version}
+mediaType: application/json
+baseUri: /
+uses:
+  library: library.raml
+/drinks:
+  description: Provides interaction with 'Drink' resource  
+  get:
+    description: Retrieves a list of available drinks.      
+    responses:
+      200:        
+        body:
+          application/json:
+            schema: library.Drink[]
+/humans:
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            type: library.Human
+    body:
+      application/json:
+        type: library.Human
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: library.Human[]
+            example:
+                -
+                  first_name: one
+                  last_name: zero
+                  home_address:
+                    street_address: 1 Fine Street
+                    city: Neartown
+                    country: Farelly
+                -
+                  first_name: two
+                  last_name: zero
+                  home_address:
+                    street_address: 10 Narrow Lane
+                    city: Farcity
+                    state: Wonderstate
+                    country: United Islands
     
